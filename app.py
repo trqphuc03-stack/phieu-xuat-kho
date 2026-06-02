@@ -1762,7 +1762,7 @@ elif page == "chuyen_hang":
                             logo_bytes       = logo_bytes_tab3,
                         )
 
-                        safe_br = branch.strip().replace(" ", "-").replace("/", "-")
+                        safe_cn = chi_nhanh_nhan_inp.strip().replace("/", "-")
                         filename_ch = f"[TT-{safe_br}] {ma_phieu_ch}.docx"
                         zf.writestr(filename_ch, docx_bytes_ch)
                         count_ch += 1
