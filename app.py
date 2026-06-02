@@ -1685,8 +1685,8 @@ elif page == "chuyen_hang":
                     logo_bytes       = logo_bytes_tab3,
                 )
 
-                safe_cn  = chi_nhanh_nhan_inp.strip().replace(" ", "-").replace("/", "-")
-                filename = f"[TT-{safe_cn}] KHO-TỔNG_{ma_phieu_tap}.docx"
+                safe_cn  = chi_nhanh_nhan_inp.strip().replace("/", "-")
+                filename = filename_ch = f"[TT-{safe_cn}] KHO TỔNG_{ma_phieu_ch}.docx"
                 st.success(f"✅ Đã tạo phiếu **{ma_phieu_tap}** thành công!")
                 st.download_button(
                     label=f"⬇️ Tải phiếu {filename}",
@@ -1763,7 +1763,7 @@ elif page == "chuyen_hang":
                         )
 
                         safe_cn = chi_nhanh_nhan_inp.strip().replace("/", "-")
-                        filename_ch = f"[TT-{safe_br}] {ma_phieu_ch}.docx"
+                        filename_ch = filename_ch = f"[TT-{safe_cn}] KHO TỔNG_{ma_phieu_ch}.docx"
                         zf.writestr(filename_ch, docx_bytes_ch)
                         count_ch += 1
                         progress_ch.progress((i + 1) / len(selected_ch),
