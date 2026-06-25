@@ -708,7 +708,7 @@ def build_phieu(branch_name, items, now, logo_bytes=None, ghi_chu="Upload lên L
             item.get("ma_hang", ""),
             item.get("ten_hang", ""),
             item.get("dvt", ""),
-            fmt_number(round(qty))
+            fmt_number(round(qty)),
             fmt_number(item["gia_cost"]) if show_gia else "",
             fmt_number(amount) if show_gia else "",
         ]
