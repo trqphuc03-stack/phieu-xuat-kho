@@ -12,6 +12,13 @@ import base64
 import os
 import requests
 from datetime import datetime
+import math
+
+def round_game(qty):
+    if qty - math.floor(qty) > 0.5:
+        return math.ceil(qty)
+    else:
+        return math.floor(qty)
 
 def read_gsheet_as_rows(url):
     """Đọc Google Sheet public từ URL, trả về list of rows (list of values)."""
@@ -2794,7 +2801,7 @@ elif page == "hang_game":
                     raw = ws_raw.cell(row_idx, so_dat_col).value
                     qty = float(raw or 0)
                     if qty > 0:
-                        branch_qty[tt] = qty
+                        branch_qty[tt] = round_game(qty)
                 except (ValueError, TypeError):
                     pass
 
