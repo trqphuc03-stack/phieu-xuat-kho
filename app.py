@@ -2744,8 +2744,7 @@ elif page == "hang_game":
                 pass
 
             col_1idx = i + 1
-            # Số theo quy cách = cột TT + 5
-            nearest_so_dat = col_1idx + 5
+            nearest_so_dat = col_1idx + 4
 
             # Tránh trùng tên TT
             unique_name = val_strip
@@ -2788,13 +2787,22 @@ elif page == "hang_game":
                 parts = ""
             ten_hang_full = f"{ten_hang} ({parts})" if parts else ten_hang
 
+            # Lấy quy cách đóng gói của sản phẩm (cột 8)
+            try:
+                quy_cach_val = float(ws_raw.cell(row_idx, 8).value or 1)
+                if quy_cach_val <= 0:
+                    quy_cach_val = 1
+            except (ValueError, TypeError):
+                quy_cach_val = 1
+
             branch_qty = {}
             for tt, so_dat_col in branches.items():
                 try:
                     raw = ws_raw.cell(row_idx, so_dat_col).value
-                    qty = float(raw or 0)
-                    if qty > 0:
-                        branch_qty[tt] = qty
+                    so_order = float(raw or 0)
+                    if so_order > 0:
+                        # Số đặt = Số Order / Quy cách đóng gói
+                        branch_qty[tt] = so_order / quy_cach_val
                 except (ValueError, TypeError):
                     pass
 
@@ -2974,7 +2982,7 @@ elif page == "hang_game":
                         col_l = get_column_letter(col)
                         qty   = p["branch_qty"].get(tt, 0)
                         cq    = ws.cell(row_idx, col)
-                        cq.value = round(qty) if qty else None  # hiển thị số chẵn
+                        cq.value = round(qty, 2) if qty else None
                         cq.font  = Font(name="Arial", size=10)
                         cq.fill  = rfill
                         cq.alignment = center
