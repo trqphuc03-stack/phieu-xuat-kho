@@ -1222,7 +1222,7 @@ def parse_excel_raw(file_bytes):
                         "Tên Hàng":  ten_hang,
                         "Cách đóng": str(row[COL_DVT]).strip()      if COL_DVT < len(row) and row[COL_DVT]  else "",
                         "Giá cost":  gia_cost,
-                        "Số đặt":    int(so_dat),
+                        "Số đặt":    so_dat,
                     })
 
                 if items:
@@ -2385,7 +2385,7 @@ elif page == "hang_phong_choi":
                     try:
                         qty = float(row[col])
                         if qty > 0:
-                            branch_qty[tt] = int(qty)
+                            branch_qty[tt] = qty
                     except:
                         pass
 
@@ -2794,7 +2794,7 @@ elif page == "hang_game":
                     raw = ws_raw.cell(row_idx, so_dat_col).value
                     qty = float(raw or 0)
                     if qty > 0:
-                        branch_qty[tt] = int(qty)
+                        branch_qty[tt] = qty
                 except (ValueError, TypeError):
                     pass
 
