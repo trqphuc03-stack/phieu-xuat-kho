@@ -2844,7 +2844,7 @@ elif page == "hang_game":
                 row_data = {"Tên hàng": p["ten_hang"], "ĐVT": p["dvt"], "Đơn giá": p["don_gia"]}
                 for tt in tt_co_hang:
                     qty = p["branch_qty"].get(tt, 0)
-                    row_data[tt] = qty
+                    row_data[tt] = round(qty) if qty else 0
                     tong_tt[tt] += qty
                 report_rows.append(row_data)
             tong_row = {"Tên hàng": "TỔNG", "ĐVT": "", "Đơn giá": ""}
@@ -2974,7 +2974,7 @@ elif page == "hang_game":
                         col_l = get_column_letter(col)
                         qty   = p["branch_qty"].get(tt, 0)
                         cq    = ws.cell(row_idx, col)
-                        cq.value = qty or None
+                        cq.value = round(qty) if qty else None  # hiển thị số chẵn
                         cq.font  = Font(name="Arial", size=10)
                         cq.fill  = rfill
                         cq.alignment = center
