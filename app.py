@@ -2024,8 +2024,8 @@ elif page == "chuyen_hang":
                         "Tên hàng":   ten_hang,
                         "ĐVT":        dvt,
                         "Đơn giá":    f"{int(gia_cost):,}" if gia_cost else "",
-                        "Tổng SL":    tong_sp,
-                        "Thành tiền": f"{int(tong_tien):,}",
+                        "Tổng SL":    round(tong_sp),
+                        "Thành tiền": f"{int(round(tong_tien)):,}",
                         **tt_qty,
                     })
 
@@ -2034,7 +2034,7 @@ elif page == "chuyen_hang":
                     "Mã hàng": "", "Tên hàng": "TỔNG CỘNG",
                     "ĐVT": "", "Đơn giá": "",
                     "Tổng SL":    sum(tong_tt_ch.values()),
-                    "Thành tiền": f"{int(tong_tien_ncc):,}",
+                    "Thành tiền": f"{int(round(tong_tien_ncc)):,}",
                 }
                 for tt in tt_co_hang:
                     tong_row_ch[tt] = round(tong_tt_ch[tt]) if tong_tt_ch[tt] else ""
