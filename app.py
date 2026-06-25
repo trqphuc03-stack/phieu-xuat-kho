@@ -551,7 +551,7 @@ def parse_excel(file_bytes):
                     try:
                         qty = float(row[col] or 0)
                         if qty > 0:
-                            branch_qty[branch] = int(qty)
+                            branch_qty[branch] = qty
                     except (ValueError, TypeError):
                         pass
 
@@ -708,7 +708,7 @@ def build_phieu(branch_name, items, now, logo_bytes=None, ghi_chu="Upload lên L
             item.get("ma_hang", ""),
             item.get("ten_hang", ""),
             item.get("dvt", ""),
-            fmt_number(qty),
+            fmt_number(round(qty))
             fmt_number(item["gia_cost"]) if show_gia else "",
             fmt_number(amount) if show_gia else "",
         ]
@@ -1141,7 +1141,7 @@ def parse_excel_raw(file_bytes):
                         "Tên Hàng":  ten_hang,
                         "Cách đóng": str(row[COL_DVT]).strip()      if COL_DVT < len(row) and row[COL_DVT]  else "",
                         "Giá cost":  gia_cost,
-                        "Số đặt":    int(so_dat),
+                        "Số đặt":    so_dat,
                     })
 
                 if items:
@@ -2450,7 +2450,7 @@ elif page == "hang_phong_choi":
                     }
                     for tt in tt_co_hang:
                         qty = p["branch_qty"].get(tt, 0)
-                        row_data[tt] = qty
+                        row_data[tt] = round(qty) if qty else 0
                         tong_tt[tt] += qty
                     report_rows.append(row_data)
 
