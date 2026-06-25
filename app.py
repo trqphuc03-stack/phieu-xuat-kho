@@ -2709,7 +2709,7 @@ elif page == "hang_game":
         COL_NCC      = 4   # D
         COL_TEN_HANG = 6   # F
         COL_DVT      = 10  # J (Đơn vị đặt hàng)
-        COL_DON_GIA  = 9   # I (Giá cost)
+        COL_DON_GIA  = 11   # I (Giá cost)
         COL_QUY_CACH = 8   # H (Quy cách đóng gói)
 
         # Tìm tất cả cột "Số đặt" trong hàng 3
