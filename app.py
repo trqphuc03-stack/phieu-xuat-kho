@@ -2794,7 +2794,7 @@ elif page == "hang_game":
                     raw = ws_raw.cell(row_idx, so_dat_col).value
                     qty = float(raw or 0)
                     if qty > 0:
-                        branch_qty[tt] = round(qty)
+                        branch_qty[tt] = qty
                 except (ValueError, TypeError):
                     pass
 
