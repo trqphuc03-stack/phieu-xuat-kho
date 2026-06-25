@@ -2014,7 +2014,7 @@ elif page == "chuyen_hang":
                     if tong_sp == 0:
                         continue
                     sp_count += 1
-                    tt_qty = {tt: (qty_map.get(tt, 0) or "") for tt in tt_co_hang}
+                    tt_qty = {tt: (round(qty_map.get(tt, 0)) if qty_map.get(tt, 0) else "") for tt in tt_co_hang}
                     for tt in tt_co_hang:
                         tong_tt_ch[tt] += qty_map.get(tt, 0)
                     tong_tien = tong_sp * gia_cost
@@ -2037,7 +2037,7 @@ elif page == "chuyen_hang":
                     "Thành tiền": f"{int(tong_tien_ncc):,}",
                 }
                 for tt in tt_co_hang:
-                    tong_row_ch[tt] = tong_tt_ch[tt] or ""
+                    tong_row_ch[tt] = round(tong_tt_ch[tt]) if tong_tt_ch[tt] else ""
                 rows_ch.append(tong_row_ch)
 
                 tong_tien_str = f"{int(tong_tien_ncc):,} đ"
